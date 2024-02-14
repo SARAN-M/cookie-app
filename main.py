@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException, Cookie,Request,Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-
+import sys
+import uvicorn
 import requests
 app = FastAPI()
 
@@ -35,3 +36,7 @@ async def get_cookie(request: Request):
         return request.cookies.get('accesstoken')
     else:
         raise HTTPException(status_code=404, detail="Cookie not found")
+
+if __name__ == '__main__':
+    port = int(sys.argv[1])
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
