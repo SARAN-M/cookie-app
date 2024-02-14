@@ -18,7 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/set-cookies")
+@app.get("/api/cookie/set-cookies")
 async def set_cookie(request: Request,response: Response):
     params = request.query_params
     content = {"message": "Cookie set successfully"}
@@ -27,7 +27,7 @@ async def set_cookie(request: Request,response: Response):
     return response
 
 
-@app.get("/get-cookies")
+@app.get("/api/cookie/get-cookies")
 async def get_cookie(request: Request):
     """
     Get the value of the provided cookie key.
